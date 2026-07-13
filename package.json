@@ -1,0 +1,8 @@
+{
+  "name": "aura-gym-website",
+  "version": "1.0.0",
+  "description": "Premium Gym Landing Page",
+  "scripts": {
+    "start": "npx http-server -p 3000"
+  }
+}

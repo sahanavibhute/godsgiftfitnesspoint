@@ -1919,7 +1919,7 @@ footer {
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
-    h1.hero-content h1 {
+    .hero-content h1 {
         font-size: 4rem;
     }
     .owner-grid, .about-grid, .contact-grid {
@@ -2032,4 +2032,47 @@ footer {
     color: #FFFFFF;
     box-shadow: 0 4px 15px rgba(255, 94, 0, 0.2), var(--shadow-neon);
 }
+
+/* Contact Map Wrapper & Mobile Heights */
+.contact-map-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid var(--border-color);
+    height: 100%;
+    min-height: 480px;
+}
+
+@media (max-width: 1024px) {
+    .contact-map-wrapper {
+        min-height: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    .cta-box h2 {
+        font-size: 2.0rem;
+    }
+    .about-content h3 {
+        font-size: 1.5rem;
+    }
+    .contact-form-box {
+        padding: 25px 20px;
+    }
+    .contact-map-wrapper {
+        min-height: 280px;
+        height: 280px;
+    }
+    .logo {
+        font-size: 1.4rem;
+    }
+}
+
 

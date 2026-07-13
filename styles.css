@@ -1947,11 +1947,54 @@ footer {
     section {
         padding: 80px 20px 60px;
     }
+    header {
+        padding: 15px 20px;
+    }
+    header.scrolled {
+        padding: 10px 20px;
+    }
+    .logo {
+        font-size: 1.15rem;
+        white-space: nowrap;
+        gap: 6px;
+    }
+    .logo i {
+        width: 18px;
+        height: 18px;
+    }
+    .logo span {
+        display: inline;
+    }
     .section-header h2 {
-        font-size: 2.2rem;
+        font-size: 2.0rem;
+    }
+    .hero {
+        min-height: 100vh;
+        height: auto;
+        padding: 110px 20px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .hero-content {
+        margin-top: 0;
+        padding: 0;
     }
     .hero-content h1 {
-        font-size: 3.2rem;
+        font-size: 2.4rem;
+        line-height: 1.1;
+        margin-bottom: 15px;
+    }
+    .hero-desc {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        line-height: 1.5;
+    }
+    .hero-ctas {
+        gap: 15px;
+    }
+    .scroll-indicator {
+        display: none;
     }
     .nav-menu {
         position: fixed;
@@ -2052,7 +2095,7 @@ footer {
 
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.0rem;
     }
     .section-header h2 {
         font-size: 1.8rem;
@@ -2071,7 +2114,7 @@ footer {
         height: 280px;
     }
     .logo {
-        font-size: 1.4rem;
+        font-size: 1.05rem;
     }
 }
 

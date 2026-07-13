@@ -724,8 +724,14 @@ header.scrolled {
 .reels-slider-wrapper {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto;
     padding: 10px 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.reels-slider-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .reels-track {
@@ -2036,6 +2042,14 @@ footer {
     }
     .cta-box h2 {
         font-size: 2.5rem;
+    }
+    .pricing-tabs-container {
+        padding: 4px;
+        margin-bottom: 30px;
+    }
+    .pricing-tab-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
     }
 }
 

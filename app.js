@@ -196,41 +196,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 6. Reels Drag Slider
+    // 6. Reels Drag Slider & Unmuted Click Behavior
+    const reelsWrapper = document.querySelector('.reels-slider-wrapper');
     const reelsTrack = document.querySelector('.reels-track');
     let isDragging = false;
     let startX;
     let scrollLeft;
 
-    if (reelsTrack) {
+    if (reelsWrapper && reelsTrack) {
+        // Drag to scroll handling for Desktop
         reelsTrack.addEventListener('mousedown', (e) => {
             isDragging = true;
-            startX = e.pageX - reelsTrack.offsetLeft;
-            scrollLeft = reelsTrack.scrollLeft;
+            startX = e.pageX - reelsWrapper.offsetLeft;
+            scrollLeft = reelsWrapper.scrollLeft;
+            reelsTrack.style.cursor = 'grabbing';
         });
 
         reelsTrack.addEventListener('mouseleave', () => {
             isDragging = false;
+            reelsTrack.style.cursor = 'grab';
         });
 
         reelsTrack.addEventListener('mouseup', () => {
             isDragging = false;
+            reelsTrack.style.cursor = 'grab';
         });
 
         reelsTrack.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
             e.preventDefault();
-            const x = e.pageX - reelsTrack.offsetLeft;
-            const walk = (x - startX) * 2; // scroll speed
-            reelsTrack.scrollLeft = scrollLeft - walk;
+            const x = e.pageX - reelsWrapper.offsetLeft;
+            const walk = (x - startX) * 1.5; // scroll speed multiplier
+            reelsWrapper.scrollLeft = scrollLeft - walk;
         });
 
-        // Touch support
+        // Touch events (for browsers/devices that don't support smooth native touch or for mouse emulation)
         reelsTrack.addEventListener('touchstart', (e) => {
             isDragging = true;
-            startX = e.touches[0].pageX - reelsTrack.offsetLeft;
-            scrollLeft = reelsTrack.scrollLeft;
-        });
+            startX = e.touches[0].pageX - reelsWrapper.offsetLeft;
+            scrollLeft = reelsWrapper.scrollLeft;
+        }, { passive: true });
 
         reelsTrack.addEventListener('touchend', () => {
             isDragging = false;
@@ -238,9 +243,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
         reelsTrack.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
-            const x = e.touches[0].pageX - reelsTrack.offsetLeft;
-            const walk = (x - startX) * 2;
-            reelsTrack.scrollLeft = scrollLeft - walk;
+            const x = e.touches[0].pageX - reelsWrapper.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            reelsWrapper.scrollLeft = scrollLeft - walk;
+        }, { passive: true });
+
+        // Play-Once-Unmuted Behavior
+        const reelCards = document.querySelectorAll('.reel-card');
+        reelCards.forEach(card => {
+            const video = card.querySelector('.reel-video');
+            const overlay = card.querySelector('.reel-overlay');
+            
+            card.addEventListener('click', () => {
+                if (video) {
+                    if (video.muted || video.paused) {
+                        // Pause/Mute all other reels
+                        reelCards.forEach(otherCard => {
+                            const otherVideo = otherCard.querySelector('.reel-video');
+                            const otherOverlay = otherCard.querySelector('.reel-overlay');
+                            if (otherVideo && otherVideo !== video) {
+                                otherVideo.muted = true;
+                                otherVideo.loop = true;
+                                if (otherVideo.paused) otherVideo.play();
+                                if (otherOverlay) otherOverlay.style.opacity = '1';
+                            }
+                        });
+                        
+                        // Play this reel unmuted once
+                        video.muted = false;
+                        video.loop = false; // Run once only
+                        video.currentTime = 0;
+                        video.play();
+                        if (overlay) overlay.style.opacity = '0';
+                    } else {
+                        // If playing unmuted, return to background loop
+                        video.muted = true;
+                        video.loop = true;
+                        video.play();
+                        if (overlay) overlay.style.opacity = '1';
+                    }
+                }
+            });
+            
+            if (video) {
+                video.addEventListener('ended', () => {
+                    video.muted = true;
+                    video.loop = true;
+                    video.play(); // resume background loop
+                    if (overlay) overlay.style.opacity = '1';
+                });
+            }
         });
     }
 

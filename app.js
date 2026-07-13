@@ -256,30 +256,29 @@ document.addEventListener('DOMContentLoaded', () => {
             
             card.addEventListener('click', () => {
                 if (video) {
-                    if (video.muted || video.paused) {
-                        // Pause/Mute all other reels
+                    if (video.paused) {
+                        // Pause all other reels
                         reelCards.forEach(otherCard => {
                             const otherVideo = otherCard.querySelector('.reel-video');
                             const otherOverlay = otherCard.querySelector('.reel-overlay');
                             if (otherVideo && otherVideo !== video) {
+                                otherVideo.pause();
                                 otherVideo.muted = true;
-                                otherVideo.loop = true;
-                                if (otherVideo.paused) otherVideo.play();
+                                otherVideo.currentTime = 0;
                                 if (otherOverlay) otherOverlay.style.opacity = '1';
                             }
                         });
                         
                         // Play this reel unmuted once
                         video.muted = false;
-                        video.loop = false; // Run once only
                         video.currentTime = 0;
                         video.play();
                         if (overlay) overlay.style.opacity = '0';
                     } else {
-                        // If playing unmuted, return to background loop
+                        // If already playing, pause and reset
+                        video.pause();
                         video.muted = true;
-                        video.loop = true;
-                        video.play();
+                        video.currentTime = 0;
                         if (overlay) overlay.style.opacity = '1';
                     }
                 }
@@ -287,9 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (video) {
                 video.addEventListener('ended', () => {
+                    video.pause();
                     video.muted = true;
-                    video.loop = true;
-                    video.play(); // resume background loop
+                    video.currentTime = 0;
                     if (overlay) overlay.style.opacity = '1';
                 });
             }

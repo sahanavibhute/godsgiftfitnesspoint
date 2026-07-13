@@ -2139,6 +2139,26 @@ footer {
     .logo {
         font-size: 1.05rem;
     }
+    .pricing-tabs-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        max-width: 300px;
+        gap: 8px;
+        border-radius: 16px;
+        padding: 8px;
+        margin: 0 auto 30px;
+    }
+    .pricing-tab-btn {
+        flex: none;
+        width: 100%;
+        text-align: center;
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        border-radius: 10px;
+        white-space: nowrap;
+        letter-spacing: 0;
+    }
 }
 
 

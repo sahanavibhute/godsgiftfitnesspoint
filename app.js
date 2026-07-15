@@ -506,4 +506,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Toggle Facilities View More/Less
+    const toggleBtn = document.getElementById('btn-toggle-facilities');
+    const hiddenCards = document.querySelectorAll('.facility-card.hidden-card');
+    
+    if (toggleBtn && hiddenCards.length > 0) {
+        let isExpanded = false;
+        const hiddenCardsList = Array.from(hiddenCards);
+        
+        toggleBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            hiddenCardsList.forEach(card => {
+                if (isExpanded) {
+                    card.classList.remove('hidden-card');
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    // Trigger browser reflow
+                    card.offsetHeight;
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                } else {
+                    card.classList.add('hidden-card');
+                }
+            });
+            toggleBtn.textContent = isExpanded ? 'View Less' : 'View More';
+        });
+    }
 });

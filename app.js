@@ -534,4 +534,32 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.textContent = isExpanded ? 'View Less' : 'View More';
         });
     }
+
+    // Toggle Equipment View More/Less
+    const toggleEqBtn = document.getElementById('btn-toggle-equipment');
+    const hiddenEqCards = document.querySelectorAll('.equipment-card.hidden-eq');
+    
+    if (toggleEqBtn && hiddenEqCards.length > 0) {
+        let isExpanded = false;
+        const hiddenEqCardsList = Array.from(hiddenEqCards);
+        
+        toggleEqBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            hiddenEqCardsList.forEach(card => {
+                if (isExpanded) {
+                    card.classList.remove('hidden-eq');
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    // Trigger browser reflow
+                    card.offsetHeight;
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                } else {
+                    card.classList.add('hidden-eq');
+                }
+            });
+            toggleEqBtn.textContent = isExpanded ? 'View Less' : 'View More';
+        });
+    }
 });

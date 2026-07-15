@@ -2168,5 +2168,7 @@ footer {
 .facility-card.hidden-card {
     display: none !important;
 }
-
-
+/* Hidden Equipment Cards Toggle State */
+.equipment-card.hidden-eq {
+    display: none !important;
+}

@@ -254,7 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const video = card.querySelector('.reel-video');
             const overlay = card.querySelector('.reel-overlay');
             
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
                 if (video) {
                     if (video.paused) {
                         // Pause all other reels

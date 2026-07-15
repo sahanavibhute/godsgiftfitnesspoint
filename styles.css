@@ -2171,4 +2171,7 @@ footer {
 /* Hidden Equipment Cards Toggle State */
 .equipment-card.hidden-eq {
     display: none !important;
+}/* Hidden Gallery Items Toggle State */
+.gallery-item.hidden-gallery {
+    display: none !important;
 }

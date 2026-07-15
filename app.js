@@ -562,4 +562,32 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleEqBtn.textContent = isExpanded ? 'View Less' : 'View More';
         });
     }
+
+    // Toggle Gallery View More/Less
+    const toggleGalleryBtn = document.getElementById('btn-toggle-gallery');
+    const hiddenGalleryItems = document.querySelectorAll('.gallery-item.hidden-gallery');
+    
+    if (toggleGalleryBtn && hiddenGalleryItems.length > 0) {
+        let isExpanded = false;
+        const hiddenGalleryItemsList = Array.from(hiddenGalleryItems);
+        
+        toggleGalleryBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            hiddenGalleryItemsList.forEach(item => {
+                if (isExpanded) {
+                    item.classList.remove('hidden-gallery');
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    // Trigger browser reflow
+                    item.offsetHeight;
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                } else {
+                    item.classList.add('hidden-gallery');
+                }
+            });
+            toggleGalleryBtn.textContent = isExpanded ? 'View Less' : 'View More';
+        });
+    }
 });

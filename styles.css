@@ -1675,8 +1675,8 @@ header.scrolled {
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 50px;
 }
 
 .contact-info {
@@ -2109,13 +2109,13 @@ footer {
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     border: 1px solid var(--border-color);
     height: 100%;
-    min-height: 480px;
+    min-height: 400px;
 }
 
 @media (max-width: 1024px) {
     .contact-map-wrapper {
-        min-height: 400px;
-        height: 400px;
+        min-height: 350px;
+        height: 350px;
     }
 }
 
@@ -2136,8 +2136,8 @@ footer {
         padding: 25px 20px;
     }
     .contact-map-wrapper {
-        min-height: 280px;
-        height: 280px;
+        min-height: 250px;
+        height: 250px;
     }
     .logo {
         font-size: 1.05rem;

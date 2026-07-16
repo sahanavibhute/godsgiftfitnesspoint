@@ -589,6 +589,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             toggleGalleryBtn.textContent = isExpanded ? 'View Less' : 'View More';
         });
+    }
+
     // Equipment Carousel Slider (Mouse Drag & Touch Swipe Controls)
     const eqWrapper = document.querySelector('.equipment-slider-wrapper');
     const eqTrack = document.querySelector('.equipment-track');

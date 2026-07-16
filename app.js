@@ -589,5 +589,20 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             toggleGalleryBtn.textContent = isExpanded ? 'View Less' : 'View More';
         });
+    // Equipment Slider Navigation
+    const eqWrapper = document.querySelector('.equipment-slider-wrapper');
+    const btnEqPrev = document.getElementById('btn-eq-prev');
+    const btnEqNext = document.getElementById('btn-eq-next');
+
+    if (eqWrapper && btnEqPrev && btnEqNext) {
+        btnEqNext.addEventListener('click', () => {
+            const cardWidth = eqWrapper.querySelector('.equipment-card').offsetWidth + 30; // card width + gap
+            eqWrapper.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
+
+        btnEqPrev.addEventListener('click', () => {
+            const cardWidth = eqWrapper.querySelector('.equipment-card').offsetWidth + 30; // card width + gap
+            eqWrapper.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
     }
 });

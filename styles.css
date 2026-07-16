@@ -1054,7 +1054,7 @@ header.scrolled {
 
 .equipment-img-box {
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 2/3; /* Doubled height for tall cards */
     border-radius: 14px;
     overflow: hidden;
     background: #0c0c0c;
